@@ -59,6 +59,5 @@ namespace LoanMgmtSystem.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Login");
         }
-
     }
 }
