@@ -32,7 +32,8 @@
 				}
 				return factory( w );
 			};
-	} else {
+	} else 
+	{
 		factory( global );
 	}
 
