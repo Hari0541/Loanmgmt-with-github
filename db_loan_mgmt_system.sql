@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 02, 2023 at 06:07 AM
+-- Generation Time: Apr 14, 2023 at 08:26 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -45,13 +45,34 @@ CREATE TABLE IF NOT EXISTS `tbl_customer_details` (
   PRIMARY KEY (`CustId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
+
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `tbl_customer_details`
+-- Table structure for table `tbl_loan_details`
 --
 
-INSERT INTO `tbl_customer_details` (`CustId`, `Name`, `FirstName`, `LastName`, `CompanyName`, `Designation`, `Salary`, `Email`, `Phone`, `Password`, `Roles`) VALUES
-(1, 'Azar', 'Azaruddin', 'Bhadgavkar', 'Nityo Infotech', 'Software Developer', '62700.00', 'azaruddinbhadgavkar1111@gmail.com', '08408098804', '8408098804', 'Management'),
-(2, 'Azaruddin', 'Azaruddin', 'Bhadgavkar', 'Nityo Infotech', 'Software Developer', '62700.00', 'azaruddinbhadgavkar1111@gmail.com', '08408098804', '8408098804', 'Customer');
+DROP TABLE IF EXISTS `tbl_loan_details`;
+CREATE TABLE IF NOT EXISTS `tbl_loan_details` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `OfferId` int(11) DEFAULT NULL,
+  `OfferName` varchar(300) DEFAULT NULL,
+  `RateOfInt` decimal(10,2) DEFAULT NULL,
+  `Duration` decimal(10,2) DEFAULT NULL,
+  `LoanAmt` decimal(10,2) DEFAULT NULL,
+  `PayAmt` decimal(10,2) DEFAULT NULL,
+  `DueAmt` decimal(10,2) DEFAULT NULL,
+  `CustID` int(11) DEFAULT NULL,
+  `STATUS` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_loan_details`
+--
+
+INSERT INTO `tbl_loan_details` (`ID`, `OfferId`, `OfferName`, `RateOfInt`, `Duration`, `LoanAmt`, `PayAmt`, `DueAmt`, `CustID`, `STATUS`) VALUES
+(4, 1, 'Home Loan ', '5.00', '2.00', '200000.00', '0.00', '210000.00', 2, 'Approved');
 
 -- --------------------------------------------------------
 
@@ -61,19 +82,21 @@ INSERT INTO `tbl_customer_details` (`CustId`, `Name`, `FirstName`, `LastName`, `
 
 DROP TABLE IF EXISTS `tbl_offer_details`;
 CREATE TABLE IF NOT EXISTS `tbl_offer_details` (
-  `OfferId` int(11) NOT NULL AUTO_INCREMENT,
+  `OfferId` int(11) NOT NULL,
   `OfferName` varchar(300) DEFAULT NULL,
-  PRIMARY KEY (`OfferId`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+  `RateOfInt` decimal(10,2) DEFAULT NULL,
+  `Duration` decimal(10,2) DEFAULT NULL,
+  `LoanAmt` decimal(10,2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_offer_details`
 --
 
-INSERT INTO `tbl_offer_details` (`OfferId`, `OfferName`) VALUES
-(1, 'Home Loan '),
-(2, 'Personal Loan '),
-(3, 'Car Loan');
+INSERT INTO `tbl_offer_details` (`OfferId`, `OfferName`, `RateOfInt`, `Duration`, `LoanAmt`) VALUES
+(1, 'Home Loan ', '5.00', '2.00', '200000.00'),
+(2, 'Personal Loan ', '15.50', '5.00', '200000.00'),
+(3, 'Car Loan', '10.00', '3.00', '200000.00');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
